@@ -1,0 +1,44 @@
+package edu.mum.cs.cs425.demos.studentrecordsmgmtapp;
+
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
+
+import edu.mum.cs.cs425.demos.studentrecordsmgmtapp.model.Student;
+
+public class MyStudentRecordsMgmtApp {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		List<Student> students=new ArrayList<Student>();
+		students.add(new Student(110001, "Dave", LocalDate.of(1951, 11, 18)));
+		students.add(new Student(110002, "Anna", LocalDate.of(1990, 12, 07)));
+		students.add(new Student(110003, "Erica", LocalDate.of(1974, 1, 31)));
+		students.add(new Student(110003, "Carlos", LocalDate.of(2009, 8, 22)));
+		students.add(new Student(110005, "Bob", LocalDate.of(1990, 3, 05)));
+		MyStudentRecordsMgmtApp rec=new MyStudentRecordsMgmtApp();
+		rec.printListOfStudents(students);
+		
+	}
+	
+	public void printListOfStudents(List<Student> stu) {
+		
+		stu.sort(new Comparator<Student>() {
+
+			@Override
+			public int compare(Student o1, Student o2) {
+				// TODO Auto-generated method stub
+				return o1.getName().compareTo(o2.getName());
+			}
+		});
+		int i=1;
+		for (Student student : stu) {
+			System.out.println("S"+i+":"+"studentId:"+student.getStudentID()+", name:"+student.getName()+", dateOfAdmission:"+student.getDao().format(DateTimeFormatter.ofPattern("MM/dd/YYYY")));
+			i++;
+		}
+		
+	}
+
+}

@@ -1,0 +1,9 @@
+package edu.mum.cs.cs425.demos.studentrecordsmgmtapp.model;
+
+public class Student {
+
+	public Student() {
+		// TODO Auto-generated constructor stub
+	}
+
+}
