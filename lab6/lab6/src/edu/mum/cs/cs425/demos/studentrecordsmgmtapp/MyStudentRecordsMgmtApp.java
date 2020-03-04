@@ -3,8 +3,11 @@ package edu.mum.cs.cs425.demos.studentrecordsmgmtapp;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 import edu.mum.cs.cs425.demos.studentrecordsmgmtapp.model.Student;
 
@@ -30,22 +33,15 @@ public class MyStudentRecordsMgmtApp {
 		rec.printHelloWorld(a);
 		System.out.println();
 		System.out.println("------Second Largest Number for {7,5,10,35,14,67} ---------");
-		System.out.println(rec.findSecondBiggest(a));
+		System.out.println(rec.findSecondBiggest(a).get());
 		
 	}
 	
 	public void printListOfStudents(List<Student> stu) {
 		
-		stu.sort(new Comparator<Student>() {
-
-			@Override
-			public int compare(Student o1, Student o2) {
-				// TODO Auto-generated method stub
-				return o1.getName().compareTo(o2.getName());
-			}
-		});
+		List<Student> temp=stu.stream().sorted(Comparator.comparing(Student::getName)).collect(Collectors.toList());
 		int i=1;
-		for (Student student : stu) {
+		for (Student student : temp) {
 			System.out.println("S"+i+":"+"studentId:"+student.getStudentID()+", name:"+student.getName()+", dateOfAdmission:"+student.getDao().format(DateTimeFormatter.ofPattern("MM/dd/YYYY")));
 			i++;
 		}
@@ -56,8 +52,9 @@ public class MyStudentRecordsMgmtApp {
 		
 		List<Student> platinumStu=new ArrayList<Student>();
 		for (Student lstu : stu) {
-			if(2020 - lstu.getDao().getYear()>=30)
-				platinumStu.add(lstu);
+				LocalDate temp=lstu.getDao().plusYears(30);
+				if(LocalDate.now().isAfter(temp))
+					platinumStu.add(lstu);
 			
 		}
 		return platinumStu;
@@ -76,10 +73,14 @@ public class MyStudentRecordsMgmtApp {
 		}
 	}
 	
-	public int findSecondBiggest(int arr[]) {
+	public Optional<Integer> findSecondBiggest(int arr[]) {
 		
-		int largest=arr[0];
-		int secondlarge=arr[0];
+		
+		if(arr.length<2) {
+			Optional.empty();
+		}
+		int largest=(arr[0]>arr[1])?arr[0]:arr[1];
+		int secondlarge=(largest==arr[0])?arr[1]:arr[0];
 		for(int i=1;i<arr.length;i++) {
 			if(arr[i]>largest) {
 				secondlarge=largest;
@@ -90,7 +91,7 @@ public class MyStudentRecordsMgmtApp {
 			}
 			
 		}
-		return secondlarge;
+		return Optional.of(secondlarge);
 		
 	}
 }
