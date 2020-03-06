@@ -19,7 +19,8 @@ public class Transcript {
 	@Column(name="degreeTitle", nullable = false)
 	@NotEmpty(message = "Degree title can't be empty")
 	private String degreeTitle;
-
+	
+	
 	public Transcript() {
 		super();
 		// TODO Auto-generated constructor stub

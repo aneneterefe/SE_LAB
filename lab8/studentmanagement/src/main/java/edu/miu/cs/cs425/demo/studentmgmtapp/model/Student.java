@@ -35,12 +35,19 @@ public class Student {
 	@Column(name = "dateOfEnrollment", nullable = false)
 	private LocalDate dateOfEnrollment;
 	
-	@OneToMany
-	@JoinTable(name = "transcript")
+	// a student can have many transcripts (one to many relationship)
+	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+	@JoinColumn(name = "student_id")
 	private List<Transcript> degreelist;
 	
+	//student can be in multiple classes, classes can have many students. many to many relationships
 	//owner of the relationship
-	@ManyToMany
+	@ManyToMany(cascade = { CascadeType.ALL })
+    @JoinTable(
+        name = "Student_Class", 
+        joinColumns = { @JoinColumn(name = "student_id") }, 
+        inverseJoinColumns = { @JoinColumn(name = "classroom_id") }
+    )
 	private List<Classroom> classroomList;
 
 	public Student() {

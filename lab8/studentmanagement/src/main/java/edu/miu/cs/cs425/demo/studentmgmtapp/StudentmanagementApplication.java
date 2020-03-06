@@ -1,7 +1,6 @@
 package edu.miu.cs.cs425.demo.studentmgmtapp;
 
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -39,12 +38,16 @@ public class StudentmanagementApplication implements CommandLineRunner {
 		Transcript transcript= new Transcript("BS Computer Science");
 		Classroom classroom=new Classroom("McLaughlin building","M105");
 		System.out.println(saveStudent(student));
+		List<Classroom> classroomlist= new ArrayList<>();
+		classroomlist.add(classroom);
+		student.setClassroomList(classroomlist);
+		List<Transcript> degreeList=new ArrayList<>();
+		degreeList.add(transcript);
+		student.setDegreelist(degreeList);
 		System.out.println(saveClassroom(classroom));
 		System.out.println(saveTranscript(transcript));
-//		List<Classroom> classrooms=new ArrayList<>();
-//		List<Transcript> transcripts=new ArrayList<>();
-//		classrooms.add(classroom);
-//		
+		System.out.println(saveStudent(student));
+		
 	}
 	
 	public Student saveStudent(Student student) {
