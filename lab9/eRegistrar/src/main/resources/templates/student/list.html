@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link
+            href="https://stackpath.bootstrapcdn.com/bootswatch/4.4.1/cerulean/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-LV/SIoc08vbV9CCeAwiz7RJZMI5YntsH8rGov0Y2nysmepqMWVvJqds6y0RaxIXT"
+            crossorigin="anonymous">
+    <title>eRegistrar - Students</title>
+</head>
+<body>
+<header>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+            <a class="navbar-brand" href="/">eRegistrar</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse"
+                    data-target="#navbarColor01" aria-controls="navbarColor01"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarColor01">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active"><a class="nav-link" href="/">Home
+                        <span class="sr-only">(current)</span>
+                    </a></li>
+                    <li class="nav-item"><a class="nav-link" href="./student/list">Students</a>
+                    </li>
+                </ul>
+                <form class="form-inline my-2 my-lg-0">
+                    <!--					<input class="form-control mr-sm-2" type="text"-->
+                    <!--						placeholder="Search">-->
+                    <!--					<button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>-->
+                    <span style="color:#fff;padding-left: 2em; padding-right: 1em;">Welcome, Guest</span>
+                    <!-- <a href="#" class="btn btn-secondary">Sign In</a> -->
+                </form>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container">
+    	<div class="table-wrapper">
+            <div class="table-title">
+                <div class="row">
+                    <div class="col-sm-6">
+						<h2>Manage <b>Students</b></h2>
+					</div>
+					<div class="col-sm-6">
+						<a href="#addStudentsModal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New Student</span></a>
+						<a href="#deleteStudentsModal" class="btn btn-danger" data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Delete</span></a>						
+					</div>
+                </div>
+            </div>    
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Student Number</th>
+                        <th scope="col">First Name</th>
+                        <th scope="col">Middle Name</th>
+                        <th scope="col">Last Name</th>
+                        <th scope="col">CGPA</th>
+                        <th scope="col">Date of Enrollment</th>
+                        <th scope="col">Is International</th>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="student, iter : ${students}">
+                        <th scope="row" th:text="${iter.count}"></th>
+                        <td th:text="${student.studentNumber}"></td>
+                        <td th:text="${student.firstName}"></td>
+                        <td th:text="${student.middleName}"></td>
+                        <td th:text="${student.lastName}"></td>
+                        <td th:text="${student.cgpa}"></td>
+                        <td th:text="${student.enrollmentDate}"></td>
+                        <td th:text="${student.isInternational}"></td>
+                        <td><a class="btn btn-outline-warning" href="">Edit</a></td>
+                        <td><a class="btn btn-outline-danger" href="">Delete</a></td>  
+                    </tr>
+                    <tr th:if="${studentCount < 1}">
+                        <td colspan="8" style="text-align: center;">No Students available</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

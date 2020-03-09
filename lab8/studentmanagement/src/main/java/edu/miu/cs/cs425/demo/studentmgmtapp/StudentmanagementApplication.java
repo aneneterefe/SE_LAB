@@ -41,9 +41,7 @@ public class StudentmanagementApplication implements CommandLineRunner {
 		List<Classroom> classroomlist= new ArrayList<>();
 		classroomlist.add(classroom);
 		student.setClassroomList(classroomlist);
-		List<Transcript> degreeList=new ArrayList<>();
-		degreeList.add(transcript);
-		student.setDegreelist(degreeList);
+		student.setTranscript(transcript);
 		System.out.println(saveClassroom(classroom));
 		System.out.println(saveTranscript(transcript));
 		System.out.println(saveStudent(student));
