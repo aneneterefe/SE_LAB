@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link
+            href="https://stackpath.bootstrapcdn.com/bootswatch/4.4.1/cerulean/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-LV/SIoc08vbV9CCeAwiz7RJZMI5YntsH8rGov0Y2nysmepqMWVvJqds6y0RaxIXT"
+            crossorigin="anonymous">
+     <link 
+ 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css"
+ 	rel="stylesheet"
+ 	type="text/css">          
+    <title>eRegistrar - Students</title>
+</head>
+<body>
+	<div  th:replace="fragments/header :: header">...</div>
+    <div class="container" ><br>
+	  	<section>
+                <!-- Default form register -->
+           <form id="editStudentForm" method="post" action="/eregistrar/student/editStudent" th:object="${student}">    
+				<div class="row">
+                      <!-- Student ID -->
+                      <input hidden="hiddent" type="text" id="studentId" name="studentId" class="form-control" placeholder="First name" th:value="${student.studentId}">
+                    </div>
+                  <h2 class="h4 mb-4">Add new student</h2>	
+                  <div th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"
+                                  class="alert alert-danger"></div>
+                  <div th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"
+                                  class="alert alert-danger"></div>
+                  <div th:if="${#fields.hasErrors('middleName')}" th:errors="*{middleName}"
+                                  class="alert alert-danger"></div>
+                  <div th:if="${#fields.hasErrors('studentNumber')}" th:errors="*{studentNumber}"
+                                  class="alert alert-danger"></div>    
+                  <div th:if="${#fields.hasErrors('cgpa')}" th:errors="*{cgpa}"
+                                  class="alert alert-danger"></div>
+                  <div th:if="${#fields.hasErrors('enrollmentDate')}" th:errors="*{enrollmentDate}"
+                                  class="alert alert-danger"></div>                                               
+                  <div th:if="${#fields.hasErrors('isInternational')}" th:errors="*{isInternational}"
+                                  class="alert alert-danger"></div>                                               
+                                                 
+                  <div class="row">
+                  
+                    <div class="col">
+                      <!-- First name -->
+                      <input type="text" id="firstName" name="firstName" class="form-control" placeholder="First name" th:value="${student.firstName}" required>
+                    </div>
+                    <div class="col">
+                      <!-- Middle name -->
+                      <input type="text" id="middleName" name="middleName" class="form-control" placeholder="Middle name" th:value="${student.middleName}">
+                    </div>
+                    <div class="col">
+                      <!-- Last name -->
+                      <input type="text" id="lastName" name="lastName" class="form-control" placeholder="Last name" th:value="${student.lastName}" required>
+                    </div>
+                  </div><br>
+        		  <div class="row">
+	        		   	<div class="col-8">
+	                      <!-- Student Number -->
+	                      <input type="text" id="studentNumber" name="studentNumber" class="form-control" placeholder="Student Number" th:value="${student.studentNumber}" required>
+	                    </div>
+        		   </div><br>
+                  <div class="row">
+	        		   	<div class="col-8">
+	                      <!-- cgpa -->
+	                      <input type="text" id="cgpa" name="cgpa" class="form-control" placeholder="CGPA" th:value="${student.cgpa}">
+	                    </div>
+        		   </div><br>	
+                  <div class="row">
+	        		   	<div class="col-8">
+	                      <!-- enrollment -->
+	                      <input type="text" id="enrollmentDate" name="enrollmentDate" class="form-control" placeholder="Enrollment Date(YYYY-MM-DD)" th:value="${student.enrollmentDate}" required>
+	                    </div>
+        		   </div><br>
+        		   <div class="row">
+	        			<div class="col-4">
+		                      <!-- is international -->
+		                      <label>Is international:</label>
+		                      <label><input type="radio" name="isInternational" id="isInternational" checked th:value="true">Yes</label>
+		                      <label><input type="radio" name="isInternational" id="isInternational" th:value="false">No</label>
+		                      </div>
+	                  </div><br>
+        			  <div class="row">
+	        		   	<div class="col-8">		   
+        					<button class="btn btn-outline-success" type="submit">Update</button>
+        					<a th:href="@{~/student/list}" class="btn btn-outline-warning">Cancel</a>
+        				</div>
+        			</div>
+                 </form>
+                
+              </section>
+    </div>
+</body>
+</html>

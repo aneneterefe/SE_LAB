@@ -37,12 +37,10 @@ public class Student {
 	private Double cgpa;
 	
 	@Column(nullable = false)
-	@NotBlank(message = "Enrollment Can't be blank" )
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate enrollmentDate;
 	
 	@Column(nullable = false)
-	@NotBlank(message = "isInternational Can't be blank" )
 	private Boolean isInternational;
 
 	public Student() {

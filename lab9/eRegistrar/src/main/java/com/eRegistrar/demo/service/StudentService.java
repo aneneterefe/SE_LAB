@@ -10,4 +10,5 @@ public interface StudentService {
 	Student findById(Long id);
 	Student save(Student student);
 	void delete(Long id);
+	List<Student> searchStudents(String searchString);
 }

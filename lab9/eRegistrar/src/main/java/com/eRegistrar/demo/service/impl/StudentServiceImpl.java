@@ -1,5 +1,8 @@
 package com.eRegistrar.demo.service.impl;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,6 +45,12 @@ public class StudentServiceImpl implements StudentService {
 	public void delete(Long id) {
 		// TODO Auto-generated method stub
 		studentRepository.deleteById(id);
+	}
+
+	@Override
+	public List<Student> searchStudents(String searchString) {
+		
+		return studentRepository.findByStudentNumber(searchString);
 	}
 	
 }
