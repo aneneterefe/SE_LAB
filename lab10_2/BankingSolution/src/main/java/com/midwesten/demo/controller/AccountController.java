@@ -94,14 +94,14 @@ public class AccountController {
         customer = customerService.updateCustomer(customer.getCustomerId(), customer);
         return "redirect:/bankingsolution/customer/list";
     }
-	
-	@GetMapping(value = {"/delete/{customerId}"})
-	public String deleteCustomer(@PathVariable Long customerId, Model model) {
-        customerService.deleteCustomer(customerId);
-        return "redirect:/bankingsolution/customer/list";
+*/	
+	@GetMapping(value = {"/delete/{accountId}"})
+	public String deleteAccount(@PathVariable Long accountId, Model model) {
+        accountService.deleteAccount(accountId);
+        return "redirect:/bankingsolution/account/list";
     }
 	
-	@GetMapping(value = {"/search"})
+/*	@GetMapping(value = {"/search"})
     public ModelAndView searchCustomers(@RequestParam String searchString) {
         ModelAndView modelAndView = new ModelAndView();
         List<Customer> customers = customerService.searchCustomers(searchString);

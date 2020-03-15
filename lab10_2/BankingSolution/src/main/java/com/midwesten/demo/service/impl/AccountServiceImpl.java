@@ -60,4 +60,10 @@ public class AccountServiceImpl implements AccountService {
 		
 		return (savingSum+checkingSum)-loadSum;
 	}
+
+	@Override
+	public void deleteAccount(Long id) {
+		// TODO Auto-generated method stub
+		accountRepository.deleteById(id);
+	}
 }
